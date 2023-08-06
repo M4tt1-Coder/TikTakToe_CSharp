@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XpDS61KuPH43iqQ4TKnOEx40lNq6WtegspkXQxTalFvQydq1FQgYJ2IPApOMY8CgWeVzJXEkwKsvAsG3rqyuZQ==",
+  "dgSpecHash": "hBo8Y7Iq3gTYrqbJPzXo4kAwkVjdBWGhTr0hsdxjqPyiIj343ppcIiQM2bPrTk9I7p7BaUoIeAaCfJNOyliIrQ==",
   "success": true,
-  "projectFilePath": "/Users/m4tt1/RiderProjects/TikTakToe_Game/TikTakToe_Game.csproj",
+  "projectFilePath": "/Users/m4tt1/RiderProjects/TikTakToe_CSharp/TikTakToe_Game/TikTakToe_Game.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -18,16 +18,64 @@ public class checker
     {
         //1 = X AND 2 = O
         int[] symbolIDs = { 1, 2 };
-        
-        foreach (int symbolId in symbolIDs)
-        {
-            
-             
-        }
+        //TODO - check all possible winning situation
 
         return game;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="pos1"></param>
+    /// <param name="pos2"></param>
+    /// <param name="pos3"></param>
+    /// <param name="pos4"></param>
+    /// <param name="pos5"></param>
+    /// <param name="symbolId"></param>
+    private void VerticalLine(int pos1, int pos2, int pos3, int pos4, int pos5, int symbolId)
+    {
+        //checking for this ...
+        //X 
+        // X
+        //  X
+        //...layout
+        if (pos1 == symbolId && pos3 == symbolId && pos5 == symbolId)
+        {
+            if (symbolId == 1)
+            {
+                pos1 = 4;
+                pos3 = 4;
+                pos5 = 4;
+            }
+            else
+            {
+                pos1 = 5;
+                pos3 = 5;
+                pos5 = 5;
+            }            
+        }
+        
+        //checking for this ...
+        //  X 
+        // X
+        //X
+        //...layout
+        if (pos2 == symbolId && pos3 == symbolId && pos4 == symbolId)
+        {
+            if (symbolId == 1)
+            {
+                pos2 = 4;
+                pos3 = 4;
+                pos4 = 4;
+            }
+            else
+            {
+                pos2 = 5;
+                pos3 = 5;
+                pos4 = 5;
+            }            
+        }
+    }
     
     /// <summary>
     /// checks if a player won a horizontal line

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/m4tt1/RiderProjects/TikTakToe_Game/TikTakToe_Game.csproj": {}
+    "/Users/m4tt1/RiderProjects/TikTakToe_CSharp/TikTakToe_Game/TikTakToe_Game.csproj": {}
   },
   "projects": {
-    "/Users/m4tt1/RiderProjects/TikTakToe_Game/TikTakToe_Game.csproj": {
+    "/Users/m4tt1/RiderProjects/TikTakToe_CSharp/TikTakToe_Game/TikTakToe_Game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/m4tt1/RiderProjects/TikTakToe_Game/TikTakToe_Game.csproj",
+        "projectUniqueName": "/Users/m4tt1/RiderProjects/TikTakToe_CSharp/TikTakToe_Game/TikTakToe_Game.csproj",
         "projectName": "TikTakToe_Game",
-        "projectPath": "/Users/m4tt1/RiderProjects/TikTakToe_Game/TikTakToe_Game.csproj",
+        "projectPath": "/Users/m4tt1/RiderProjects/TikTakToe_CSharp/TikTakToe_Game/TikTakToe_Game.csproj",
         "packagesPath": "/Users/m4tt1/.nuget/packages/",
-        "outputPath": "/Users/m4tt1/RiderProjects/TikTakToe_Game/obj/",
+        "outputPath": "/Users/m4tt1/RiderProjects/TikTakToe_CSharp/TikTakToe_Game/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/m4tt1/.nuget/NuGet/NuGet.Config"
