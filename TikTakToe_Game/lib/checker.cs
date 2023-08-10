@@ -18,11 +18,95 @@ public class checker
     {
         //1 = X AND 2 = O
         int[] symbolIDs = { 1, 2 };
+        foreach (var symbolID in symbolIDs)
+        {
+            //first line check
+            HorizontalLine(game.FirstLine, symbolID);
+            
+            //second line
+            HorizontalLine(game.SecondLine, symbolID);
+            
+            //third line
+            HorizontalLine(game.ThirdLine, symbolID);
+            
+            //diagonal 
+            DiagonalLine(game.FirstLine[0],
+                game.FirstLine[2],
+                game.SecondLine[1],
+                game.ThirdLine[0],
+                game.ThirdLine[2],
+                symbolID);
+            
+            //
+        }
         //TODO - check all possible winning situation
 
         return game;
     }
 
+    private void VerticalLine(int[] first, int[] second, int[] third, int symbolId)
+    {
+        //the case:
+        //X _ _
+        //X _ _ 
+        //X _ _
+        if (first[0] == symbolId && second[0] == symbolId && third[0] == symbolId)
+        {
+            if (symbolId == 1)
+            {
+                first[0] = 4;
+                second[0] = 4;
+                third[0] = 4;
+            }
+            else
+            {
+                first[0] = 5;
+                second[0] = 5;
+                third[0] = 5;
+            }
+        }
+        
+        //the case:
+        //_ X _
+        //_ X _ 
+        //_ X _
+        if (first[1] == symbolId && second[1] == symbolId && third[1] == symbolId)
+        {
+            if (symbolId == 1)
+            {
+                first[0] = 4;
+                second[0] = 4;
+                third[0] = 4;
+            }
+            else
+            {
+                first[0] = 5;
+                second[0] = 5;
+                third[0] = 5;
+            }
+        }
+        
+        //the case:
+        //_ _ X
+        //_ _ X
+        //_ _ X
+        if (first[2] == symbolId && second[2] == symbolId && third[2] == symbolId)
+        {
+            if (symbolId == 1)
+            {
+                first[0] = 4;
+                second[0] = 4;
+                third[0] = 4;
+            }
+            else
+            {
+                first[0] = 5;
+                second[0] = 5;
+                third[0] = 5;
+            }
+        }
+    }
+    
     /// <summary>
     /// 
     /// </summary>
@@ -32,7 +116,7 @@ public class checker
     /// <param name="pos4"></param>
     /// <param name="pos5"></param>
     /// <param name="symbolId"></param>
-    private void VerticalLine(int pos1, int pos2, int pos3, int pos4, int pos5, int symbolId)
+    private void DiagonalLine(int pos1, int pos2, int pos3, int pos4, int pos5, int symbolId)
     {
         //checking for this ...
         //X 

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/TikTakToe_Game.props" />
+</Project>
