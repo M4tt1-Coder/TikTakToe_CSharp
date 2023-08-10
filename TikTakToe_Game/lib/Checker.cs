@@ -2,7 +2,7 @@ using TikTakToe_Game.Models;
 
 namespace TikTakToe_Game.lib;
 
-public class checker
+public class Checker
 {
     /// <summary>
     /// Looks if a player won the game with a three repetition
@@ -18,16 +18,16 @@ public class checker
     {
         //1 = X AND 2 = O
         int[] symbolIDs = { 1, 2 };
-        foreach (var symbolID in symbolIDs)
+        foreach (var symbolId in symbolIDs)
         {
             //first line check
-            HorizontalLine(game.FirstLine, symbolID);
+            HorizontalLine(game.FirstLine, symbolId);
             
             //second line
-            HorizontalLine(game.SecondLine, symbolID);
+            HorizontalLine(game.SecondLine, symbolId);
             
             //third line
-            HorizontalLine(game.ThirdLine, symbolID);
+            HorizontalLine(game.ThirdLine, symbolId);
             
             //diagonal 
             DiagonalLine(game.FirstLine[0],
@@ -35,12 +35,17 @@ public class checker
                 game.SecondLine[1],
                 game.ThirdLine[0],
                 game.ThirdLine[2],
-                symbolID);
+                symbolId);
             
-            //
+            //vertical
+            VerticalLine(
+                game.FirstLine,
+                game.SecondLine,
+                game.ThirdLine,
+                symbolId
+                );
         }
-        //TODO - check all possible winning situation
-
+        
         return game;
     }
 

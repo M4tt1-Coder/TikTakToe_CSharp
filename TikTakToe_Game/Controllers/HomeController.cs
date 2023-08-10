@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using TikTakToe_Game.lib;
 using TikTakToe_Game.Models;
 
 namespace TikTakToe_Game.Controllers;
@@ -27,10 +28,15 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpPost]
-    public IActionResult SetPlayerChoice()
+    
+    [HttpPost("firstline/{symbolId:int}&&{index:int}")]
+    public IActionResult ChoiceInFirstLine(int symbolId, int index, GameViewModel game)
     {
+        game.FirstLine[index] = symbolId;
         
+        Checker
+        
+        return RedirectToAction("Index");
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
