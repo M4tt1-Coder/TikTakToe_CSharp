@@ -3,7 +3,7 @@ namespace TikTakToe_Game.Models;
 public class GameViewModel
 {
     //constructor
-    public GameViewModel(int[] firstLine, int[] secondLine, int[] thirdLine, int round)
+    public GameViewModel(char[] firstLine, char[] secondLine, char[] thirdLine, int round)
     {
         FirstLine = firstLine;
         SecondLine = secondLine;
@@ -18,15 +18,15 @@ public class GameViewModel
     /// <summary>
     /// defines if a X or O symbol are shown in line 1
     /// </summary>
-    public int[] FirstLine { get; set; }
+    public char[] FirstLine { get; set; }
     
     /// <summary>
     /// defines if a X or O symbol are shown in line 2
     /// </summary>
-    public int[] SecondLine { get; set; }
+    public char[] SecondLine { get; set; }
     
     /// <summary>
     /// defines if a X or O symbol are shown in line 3
     /// </summary>
-    public int[] ThirdLine { get; set; } 
+    public char[] ThirdLine { get; set; } 
 }

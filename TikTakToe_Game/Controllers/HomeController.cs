@@ -11,6 +11,7 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
+    private readonly Checker _checker = new Checker();
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
@@ -19,22 +20,64 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         //default field stats
-        var first = new int[3] { 0, 0, 0 };
-        var second = new int[3] { 0, 0, 0 };
-        var third = new int[] { 0, 0, 0 };
+        var first = new char[3] { ' ', ' ', ' ' };
+        var second = new char[3] { ' ', ' ', ' ' };
+        var third = new char[3] { ' ', ' ', ' ' };
 
         var model = new GameViewModel(first, second, third, 1);     
+        _logger.LogDebug("game model created");
         
-        return View();
+        return View(model);
     }
 
     
-    [HttpPost("firstline/{symbolId:int}&&{index:int}")]
-    public IActionResult ChoiceInFirstLine(int symbolId, int index, GameViewModel game)
+    [HttpPost("firstline/{symbolId}&&{index:int}")]
+    public IActionResult ChoiceInFirstLine(char symbolId, int index, GameViewModel game)
     {
+        //set players selection
         game.FirstLine[index] = symbolId;
+
+        //check for a winner
+        _checker.IsThereAWinner(game);
         
-        Checker
+        //go to next round 
+        game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
+        
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost("secondline/{symbolId}&&{index:int}")]
+    public IActionResult ChoiceInSecondLine(char symbolId, int index, GameViewModel game)
+    {
+        //set player selection
+        game.SecondLine[index] = symbolId;
+
+        //check for a winner
+        _checker.IsThereAWinner(game);
+        
+        //increase round counter
+        game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
+        
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost("thirdline/{symbolId}&&{index:int}")]
+    public IActionResult ChoiceInThirdLine(char symbolId, int index, GameViewModel game)
+    {
+        //setting
+        game.ThirdLine[index] = symbolId;
+
+        //a winner?
+        _checker.IsThereAWinner(game);
+        
+        //round counter
+        game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
         
         return RedirectToAction("Index");
     }

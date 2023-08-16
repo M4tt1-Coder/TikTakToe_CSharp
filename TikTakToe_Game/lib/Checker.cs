@@ -17,7 +17,7 @@ public class Checker
     public GameViewModel IsThereAWinner(GameViewModel game)
     {
         //1 = X AND 2 = O
-        int[] symbolIDs = { 1, 2 };
+        char[] symbolIDs = { 'X', 'O' };
         foreach (var symbolId in symbolIDs)
         {
             //first line check
@@ -49,7 +49,7 @@ public class Checker
         return game;
     }
 
-    private void VerticalLine(int[] first, int[] second, int[] third, int symbolId)
+    private void VerticalLine(char[] first, char[] second, char[] third, char symbolId)
     {
         //the case:
         //X _ _
@@ -57,17 +57,17 @@ public class Checker
         //X _ _
         if (first[0] == symbolId && second[0] == symbolId && third[0] == symbolId)
         {
-            if (symbolId == 1)
+            if (symbolId == 'X')
             {
-                first[0] = 4;
-                second[0] = 4;
-                third[0] = 4;
+                first[0] = '❌';
+                second[0] = '❌';
+                third[0] = '❌';
             }
             else
             {
-                first[0] = 5;
-                second[0] = 5;
-                third[0] = 5;
+                first[0] = '⭕';
+                second[0] = '⭕';
+                third[0] = '⭕';
             }
         }
         
@@ -77,17 +77,17 @@ public class Checker
         //_ X _
         if (first[1] == symbolId && second[1] == symbolId && third[1] == symbolId)
         {
-            if (symbolId == 1)
+            if (symbolId == 'X')
             {
-                first[0] = 4;
-                second[0] = 4;
-                third[0] = 4;
+                first[0] = '❌';
+                second[0] = '❌';
+                third[0] = '❌';
             }
             else
             {
-                first[0] = 5;
-                second[0] = 5;
-                third[0] = 5;
+                first[0] = '⭕';
+                second[0] = '⭕';
+                third[0] = '⭕';
             }
         }
         
@@ -97,17 +97,17 @@ public class Checker
         //_ _ X
         if (first[2] == symbolId && second[2] == symbolId && third[2] == symbolId)
         {
-            if (symbolId == 1)
+            if (symbolId == 'X')
             {
-                first[0] = 4;
-                second[0] = 4;
-                third[0] = 4;
+                first[0] = '❌';
+                second[0] = '❌';
+                third[0] = '❌';
             }
             else
             {
-                first[0] = 5;
-                second[0] = 5;
-                third[0] = 5;
+                first[0] = '⭕';
+                second[0] = '⭕';
+                third[0] = '⭕';
             }
         }
     }
@@ -121,7 +121,7 @@ public class Checker
     /// <param name="pos4"></param>
     /// <param name="pos5"></param>
     /// <param name="symbolId"></param>
-    private void DiagonalLine(int pos1, int pos2, int pos3, int pos4, int pos5, int symbolId)
+    private void DiagonalLine(char pos1, char pos2, char pos3, char pos4, char pos5, char symbolId)
     {
         //checking for this ...
         //X 
@@ -130,17 +130,17 @@ public class Checker
         //...layout
         if (pos1 == symbolId && pos3 == symbolId && pos5 == symbolId)
         {
-            if (symbolId == 1)
+            if (symbolId == 'X')
             {
-                pos1 = 4;
-                pos3 = 4;
-                pos5 = 4;
+                pos1 = '❌';
+                pos3 = '❌';
+                pos5 = '❌';
             }
             else
             {
-                pos1 = 5;
-                pos3 = 5;
-                pos5 = 5;
+                pos1 = '⭕';
+                pos3 = '⭕';
+                pos5 = '⭕';
             }            
         }
         
@@ -151,17 +151,17 @@ public class Checker
         //...layout
         if (pos2 == symbolId && pos3 == symbolId && pos4 == symbolId)
         {
-            if (symbolId == 1)
+            if (symbolId == 'X')
             {
-                pos2 = 4;
-                pos3 = 4;
-                pos4 = 4;
+                pos2 = '❌';
+                pos3 = '❌';
+                pos4 = '❌';
             }
             else
             {
-                pos2 = 5;
-                pos3 = 5;
-                pos4 = 5;
+                pos2 = '⭕';
+                pos3 = '⭕';
+                pos4 = '⭕';
             }            
         }
     }
@@ -172,19 +172,19 @@ public class Checker
     /// <param name="line">1. || 2. || 3. line</param>
     /// <param name="symbolId">if it checks for X || O</param>
     /// <returns></returns>
-    private int[] HorizontalLine(int[] line, int symbolId)
+    private char[] HorizontalLine(char[] line, char symbolId)
     {
         if (line[0] == symbolId && line[1] == symbolId && line[2] == symbolId)
         {
             for (int i = 0; i < line.Length; i++)
             {
-                if (symbolId == 1)
+                if (symbolId == 'X')
                 {
-                    line[i] = 4;
+                    line[i] = '❌';
                 }
                 else
                 {
-                    line[i] = 5;
+                    line[i] = '⭕';
                 }
             }
         }

@@ -6,9 +6,22 @@
 
 
 <main>
-    <!--show all buttons--> 
-    <div class="container-md row-cols-3">
-        <button class=""></button>
+    <!--show all buttons-->
+    <!--three buttons in one line container -> there are 3 containers
+    - they call functions in homecontroller
+    - depending on symbolid show different button faces (X OR O OR nothing)
+    -->
+    
+    <!--TODO - add all buttons + set them near each other-->
+    <div class="container-md">
+        <div class="row-cols-3 row">
+            <div class="col">
+                <button type="button" class="field">@Model.FirstLine[0]</button>
+            </div>
+            <div class="col">
+                <button type="button" class="field">@Model.FirstLine[1]</button>
+            </div>
+        </div>
     </div>
 </main>
 
