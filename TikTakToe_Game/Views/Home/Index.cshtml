@@ -13,15 +13,41 @@
     -->
     
     <!--TODO - add all buttons + set them near each other-->
-    <div class="container-md">
-        <div class="row-cols-3 row">
-            <div class="col">
-                <button type="button" class="field">@Model.FirstLine[0]</button>
+    <div  class="container-md fs-1 border border-dark">
+        <form method="post">
+            <!--first row of playing fields-->
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <!--onclick="location.href=@Url.Action("ChoiceInFirstLine","Home", new { index = 0 })"-->
+                    <!--either create a function for every button or find a way to call an action with parameters-->
+                    <button type="submit" class="field" asp-controller="Home" asp-action="ChoiceInFirstLine">@Model.FirstLine[0]</button>
+                    <button type="submit" class="field">@Model.FirstLine[1]</button>
+                    <button class="field" type="submit">@Model.FirstLine[2]</button>
+                </div>
             </div>
-            <div class="col">
-                <button type="button" class="field">@Model.FirstLine[1]</button>
+            <!--second row of playing fields-->
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <button class="field" type="submit">@Model.SecondLine[0]</button>
+                    <button class="field" type="submit">@Model.SecondLine[1]</button>
+                    <button class="field" type="submit">@Model.SecondLine[2]</button>
+                </div>
             </div>
-        </div>
+            <!--third row of playing fields-->
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <button type="submit" class="field">@Model.ThirdLine[0]</button>
+                    <button type="submit" class="field">@Model.ThirdLine[1]</button>
+                    <button class="field" type="submit">@Model.ThirdLine[2]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--show round -->
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 d-flex justify-content-start"><p class="">This is round: @Model.Round</p></div>
+        <div class="col-4"></div>
     </div>
 </main>
 

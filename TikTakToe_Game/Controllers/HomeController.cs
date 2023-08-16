@@ -26,16 +26,25 @@ public class HomeController : Controller
 
         var model = new GameViewModel(first, second, third, 1);     
         _logger.LogDebug("game model created");
+        //TODO - set the model outside of the index method 
         
         return View(model);
     }
 
     
-    [HttpPost("firstline/{symbolId}&&{index:int}")]
-    public IActionResult ChoiceInFirstLine(char symbolId, int index, GameViewModel game)
+    [HttpPost("/firstline/{index:int}")]
+    public IActionResult ChoiceInFirstLine(int index, GameViewModel game)
     {
+        //TODO - Add check if field was already chosen
         //set players selection
-        game.FirstLine[index] = symbolId;
+        if (game.Round % 2 == 0)
+        {
+            game.FirstLine[index] = 'O';
+        }
+        else
+        {
+            game.FirstLine[index] = 'X';
+        }
 
         //check for a winner
         _checker.IsThereAWinner(game);
@@ -48,11 +57,18 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
     
-    [HttpPost("secondline/{symbolId}&&{index:int}")]
-    public IActionResult ChoiceInSecondLine(char symbolId, int index, GameViewModel game)
+    [HttpPost("/secondline/{index:int}")]
+    public IActionResult ChoiceInSecondLine(int index, GameViewModel game)
     {
         //set player selection
-        game.SecondLine[index] = symbolId;
+        if (game.Round % 2 == 0)
+        {
+            game.SecondLine[index] = 'O';
+        }
+        else
+        {
+            game.SecondLine[index] = 'X';
+        }
 
         //check for a winner
         _checker.IsThereAWinner(game);
@@ -65,12 +81,19 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
     
-    [HttpPost("thirdline/{symbolId}&&{index:int}")]
-    public IActionResult ChoiceInThirdLine(char symbolId, int index, GameViewModel game)
+    [HttpPost("/thirdline/{index:int}")]
+    public IActionResult ChoiceInThirdLine(int index, GameViewModel game)
     {
         //setting
-        game.ThirdLine[index] = symbolId;
-
+        if (game.Round % 2 == 0)
+        {
+            game.ThirdLine[index] = 'O';
+        }
+        else
+        {
+            game.ThirdLine[index] = 'X';
+        }
+        
         //a winner?
         _checker.IsThereAWinner(game);
         
