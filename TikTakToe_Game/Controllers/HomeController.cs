@@ -17,88 +17,287 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    //when IActionResult function is called the game instance gets reseted 
+    //-> store game in txt file and delete it afterwards (like database)
+    //-> maybe extern lib to hold the instance 
+    
+    private GameViewModel _defaultgame = new GameViewModel(
+        new char[3] { 'X', ' ', ' ' },
+        new char[3] { ' ', ' ', ' ' },
+        new char[3] { ' ', ' ', ' ' },
+        1
+        );
+
+    private GameViewModel _game;
+    
     public IActionResult Index()
     {
-        //default field stats
-        var first = new char[3] { ' ', ' ', ' ' };
-        var second = new char[3] { ' ', ' ', ' ' };
-        var third = new char[3] { ' ', ' ', ' ' };
-
-        var model = new GameViewModel(first, second, third, 1);     
-        _logger.LogDebug("game model created");
+        if (_game == null)
+        {
+            _game = _defaultgame;
+        }
+        _logger.LogDebug("_game model created");
         //TODO - set the model outside of the index method 
         
-        return View(model);
+        return View(_game);
     }
 
     
-    [HttpPost("/firstline/{index:int}")]
-    public IActionResult ChoiceInFirstLine(int index, GameViewModel game)
+    [HttpPost]
+    public IActionResult FirstFirst()
     {
-        //TODO - Add check if field was already chosen
-        //set players selection
-        if (game.Round % 2 == 0)
+        if (_game.FirstLine[0] != ' ')
         {
-            game.FirstLine[index] = 'O';
+            return RedirectToAction("Index");
+        }
+        
+        //set players selection
+        if (_game.Round % 2 == 0)
+        {
+            _game.FirstLine[0] = 'O';
         }
         else
         {
-            game.FirstLine[index] = 'X';
+            _game.FirstLine[0] = 'X';
         }
 
         //check for a winner
-        _checker.IsThereAWinner(game);
+        _checker.IsThereAWinner(_game);
         
         //go to next round 
-        game.Round += 1;
+        _game.Round += 1;
         
         _logger.LogInformation("new symbol set");
         
         return RedirectToAction("Index");
     }
     
-    [HttpPost("/secondline/{index:int}")]
-    public IActionResult ChoiceInSecondLine(int index, GameViewModel game)
+    [HttpPost]
+    public IActionResult FirstSecond()
     {
-        //set player selection
-        if (game.Round % 2 == 0)
+        if (_game.FirstLine[1] == ' ')
         {
-            game.SecondLine[index] = 'O';
+            return RedirectToAction("Index");
+        }
+        
+        //set players selection
+        if (_game.Round % 2 == 0)
+        {
+            _game.FirstLine[1] = 'O';
         }
         else
         {
-            game.SecondLine[index] = 'X';
+            _game.FirstLine[1] = 'X';
         }
 
         //check for a winner
-        _checker.IsThereAWinner(game);
+        _checker.IsThereAWinner(_game);
         
-        //increase round counter
-        game.Round += 1;
+        //go to next round 
+        _game.Round += 1;
         
         _logger.LogInformation("new symbol set");
         
         return RedirectToAction("Index");
     }
     
-    [HttpPost("/thirdline/{index:int}")]
-    public IActionResult ChoiceInThirdLine(int index, GameViewModel game)
+    [HttpPost]
+    public IActionResult FirstThird()
     {
-        //setting
-        if (game.Round % 2 == 0)
+        if (_game.FirstLine[2] == ' ')
         {
-            game.ThirdLine[index] = 'O';
+            return RedirectToAction("Index");
+        }
+        
+        //set players selection
+        if (_game.Round % 2 == 0)
+        {
+            _game.FirstLine[2] = 'O';
         }
         else
         {
-            game.ThirdLine[index] = 'X';
+            _game.FirstLine[2] = 'X';
+        }
+
+        //check for a winner
+        _checker.IsThereAWinner(_game);
+        
+        //go to next round 
+        _game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
+        
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public IActionResult SecondFirst()
+    {
+        if (_game.SecondLine[0] == ' ')
+        {
+            return RedirectToAction("Index");
+        }
+        
+        //set player selection
+        if (_game.Round % 2 == 0)
+        {
+            _game.SecondLine[0] = 'O';
+        }
+        else
+        {
+            _game.SecondLine[0] = 'X';
+        }
+
+        //check for a winner
+        _checker.IsThereAWinner(_game);
+        
+        //increase round counter
+        _game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
+        
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public IActionResult SecondSecond()
+    {
+        if (_game.SecondLine[1] == ' ')
+        {
+            return RedirectToAction("Index");
+        }
+        
+        //set player selection
+        if (_game.Round % 2 == 0)
+        {
+            _game.SecondLine[1] = 'O';
+        }
+        else
+        {
+            _game.SecondLine[1] = 'X';
+        }
+
+        //check for a winner
+        _checker.IsThereAWinner(_game);
+        
+        //increase round counter
+        _game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
+        
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public IActionResult SecondThird()
+    {
+        if (_game.SecondLine[2] == ' ')
+        {
+            return RedirectToAction("Index");
+        }
+        
+        //set player selection
+        if (_game.Round % 2 == 0)
+        {
+            _game.SecondLine[2] = 'O';
+        }
+        else
+        {
+            _game.SecondLine[2] = 'X';
+        }
+
+        //check for a winner
+        _checker.IsThereAWinner(_game);
+        
+        //increase round counter
+        _game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
+        
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public IActionResult ThirdFirst()
+    {
+        if (_game.ThirdLine[0] == ' ')
+        {
+            return RedirectToAction("Index");
+        }        
+        
+        //setting
+        if (_game.Round % 2 == 0)
+        {
+            _game.ThirdLine[0] = 'O';
+        }
+        else
+        {
+            _game.ThirdLine[0] = 'X';
         }
         
         //a winner?
-        _checker.IsThereAWinner(game);
+        _checker.IsThereAWinner(_game);
         
         //round counter
-        game.Round += 1;
+        _game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
+        
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public IActionResult ThirdSecond()
+    {
+        if (_game.ThirdLine[1] == ' ')
+        {
+            return RedirectToAction("Index");
+        }        
+        
+        //setting
+        if (_game.Round % 2 == 0)
+        {
+            _game.ThirdLine[1] = 'O';
+        }
+        else
+        {
+            _game.ThirdLine[1] = 'X';
+        }
+        
+        //a winner?
+        _checker.IsThereAWinner(_game);
+        
+        //round counter
+        _game.Round += 1;
+        
+        _logger.LogInformation("new symbol set");
+        
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public IActionResult ThirdThird()
+    {
+        if (_game.ThirdLine[2] == ' ')
+        {
+            return RedirectToAction("Index");
+        }        
+        
+        //setting
+        if (_game.Round % 2 == 0)
+        {
+            _game.ThirdLine[2] = 'O';
+        }
+        else
+        {
+            _game.ThirdLine[2] = 'X';
+        }
+        
+        //a winner?
+        _checker.IsThereAWinner(_game);
+        
+        //round counter
+        _game.Round += 1;
         
         _logger.LogInformation("new symbol set");
         

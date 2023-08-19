@@ -13,32 +13,31 @@
     -->
     
     <!--TODO - add all buttons + set them near each other-->
-    <div  class="container-md fs-1 border border-dark">
+    <div  class="container-md fs-1">
         <form method="post">
             <!--first row of playing fields-->
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <!--onclick="location.href=@Url.Action("ChoiceInFirstLine","Home", new { index = 0 })"-->
                     <!--either create a function for every button or find a way to call an action with parameters-->
-                    <button type="submit" class="field" asp-controller="Home" asp-action="ChoiceInFirstLine">@Model.FirstLine[0]</button>
-                    <button type="submit" class="field">@Model.FirstLine[1]</button>
-                    <button class="field" type="submit">@Model.FirstLine[2]</button>
+                    <button type="submit" class="field" asp-controller="Home" asp-action="FirstFirst">@Model.FirstLine[0]</button>
+                    <button type="submit" class="field" asp-controller="Home" asp-action="FirstSecond">@Model.FirstLine[1]</button>
+                    <button class="field" type="submit" asp-controller="Home" asp-action="FirstThird">@Model.FirstLine[2]</button>
                 </div>
             </div>
             <!--second row of playing fields-->
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <button class="field" type="submit">@Model.SecondLine[0]</button>
-                    <button class="field" type="submit">@Model.SecondLine[1]</button>
-                    <button class="field" type="submit">@Model.SecondLine[2]</button>
+                    <button class="field" type="submit" asp-controller="Home" asp-action="SecondFirst">@Model.SecondLine[0]</button>
+                    <button class="field" type="submit" asp-controller="Home" asp-action="SecondSecond">@Model.SecondLine[1]</button>
+                    <button class="field" type="submit" asp-controller="Home" asp-action="SecondThird">@Model.SecondLine[2]</button>
                 </div>
             </div>
             <!--third row of playing fields-->
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <button type="submit" class="field">@Model.ThirdLine[0]</button>
-                    <button type="submit" class="field">@Model.ThirdLine[1]</button>
-                    <button class="field" type="submit">@Model.ThirdLine[2]</button>
+                    <button type="submit" class="field" asp-controller="Home" asp-action="ThirdFirst">@Model.ThirdLine[0]</button>
+                    <button type="submit" class="field" asp-controller="Home" asp-action="ThirdSecond">@Model.ThirdLine[1]</button>
+                    <button class="field" type="submit" asp-controller="Home" asp-action="ThirdThird">@Model.ThirdLine[2]</button>
                 </div>
             </div>
         </form>

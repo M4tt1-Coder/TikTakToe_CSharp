@@ -28,5 +28,15 @@ public class GameViewModel
     /// <summary>
     /// defines if a X or O symbol are shown in line 3
     /// </summary>
-    public char[] ThirdLine { get; set; } 
+    public char[] ThirdLine { get; set; }
+
+    public static GameViewModel NewGame()
+    {
+        return new GameViewModel(
+            new char[3] { ' ', ' ', ' ' },
+            new char[3] { ' ', ' ', ' ' },
+            new char[3] { ' ', ' ', ' ' },
+            1
+            );
+    }
 }
