@@ -3,12 +3,13 @@ namespace TikTakToe_Game.Models;
 public class GameViewModel
 {
     //constructor
-    public GameViewModel(char[] firstLine, char[] secondLine, char[] thirdLine, int round)
+    public GameViewModel(char[] firstLine, char[] secondLine, char[] thirdLine, int round, bool over)
     {
         FirstLine = firstLine;
         SecondLine = secondLine;
         ThirdLine = thirdLine;
         Round = round;
+        Over = over;
     }
     /// <summary>
     /// represents in what we are currently in 
@@ -30,13 +31,19 @@ public class GameViewModel
     /// </summary>
     public char[] ThirdLine { get; set; }
 
+    /// <summary>
+    /// state of the game
+    /// </summary>
+    public bool Over { get; set; }
+    
     public static GameViewModel NewGame()
     {
         return new GameViewModel(
             new char[3] { ' ', ' ', ' ' },
             new char[3] { ' ', ' ', ' ' },
             new char[3] { ' ', ' ', ' ' },
-            1
+            1,
+            false
             );
     }
 }

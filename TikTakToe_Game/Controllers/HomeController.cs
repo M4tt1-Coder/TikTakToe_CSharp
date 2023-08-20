@@ -17,57 +17,53 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    //when IActionResult function is called the game instance gets reseted 
-    //-> store game in txt file and delete it afterwards (like database)
-    //-> maybe extern lib to hold the instance 
-    
-    private GameViewModel _defaultgame = new GameViewModel(
-        new char[3] { 'X', ' ', ' ' },
-        new char[3] { ' ', ' ', ' ' },
-        new char[3] { ' ', ' ', ' ' },
-        1
-        );
-
-    private GameViewModel _game;
+    //TODO - changed the symbols when player won on a diagonal AND change over prop in checker
+    //TODO - add alert for player who won
     
     public IActionResult Index()
     {
-        if (_game == null)
+        GameViewModel game = lib.TextFileNode.GetGame();
+
+        if (game.Over)
         {
-            _game = _defaultgame;
+            lib.TextFileNode.ResetGame();
         }
-        _logger.LogDebug("_game model created");
-        //TODO - set the model outside of the index method 
         
-        return View(_game);
+        _logger.LogDebug("game model created");
+        
+        return View(game);
     }
 
     
     [HttpPost]
     public IActionResult FirstFirst()
     {
-        if (_game.FirstLine[0] != ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.FirstLine[0] != ' ')
         {
             return RedirectToAction("Index");
         }
         
         //set players selection
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.FirstLine[0] = 'O';
+            game.FirstLine[0] = 'O';
         }
         else
         {
-            _game.FirstLine[0] = 'X';
+            game.FirstLine[0] = 'X';
         }
 
         //check for a winner
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //go to next round 
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);
         
         return RedirectToAction("Index");
     }
@@ -75,28 +71,32 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult FirstSecond()
     {
-        if (_game.FirstLine[1] == ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.FirstLine[1] != ' ')
         {
             return RedirectToAction("Index");
         }
         
         //set players selection
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.FirstLine[1] = 'O';
+            game.FirstLine[1] = 'O';
         }
         else
         {
-            _game.FirstLine[1] = 'X';
+            game.FirstLine[1] = 'X';
         }
 
         //check for a winner
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //go to next round 
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);
         
         return RedirectToAction("Index");
     }
@@ -104,28 +104,32 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult FirstThird()
     {
-        if (_game.FirstLine[2] == ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.FirstLine[2] != ' ')
         {
             return RedirectToAction("Index");
         }
         
         //set players selection
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.FirstLine[2] = 'O';
+            game.FirstLine[2] = 'O';
         }
         else
         {
-            _game.FirstLine[2] = 'X';
+            game.FirstLine[2] = 'X';
         }
 
         //check for a winner
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //go to next round 
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);
         
         return RedirectToAction("Index");
     }
@@ -133,28 +137,32 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult SecondFirst()
     {
-        if (_game.SecondLine[0] == ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.SecondLine[0] != ' ')
         {
             return RedirectToAction("Index");
         }
         
         //set player selection
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.SecondLine[0] = 'O';
+            game.SecondLine[0] = 'O';
         }
         else
         {
-            _game.SecondLine[0] = 'X';
+            game.SecondLine[0] = 'X';
         }
 
         //check for a winner
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //increase round counter
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);
         
         return RedirectToAction("Index");
     }
@@ -162,28 +170,32 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult SecondSecond()
     {
-        if (_game.SecondLine[1] == ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.SecondLine[1] != ' ')
         {
             return RedirectToAction("Index");
         }
         
         //set player selection
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.SecondLine[1] = 'O';
+            game.SecondLine[1] = 'O';
         }
         else
         {
-            _game.SecondLine[1] = 'X';
+            game.SecondLine[1] = 'X';
         }
 
         //check for a winner
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //increase round counter
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);
         
         return RedirectToAction("Index");
     }
@@ -191,28 +203,32 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult SecondThird()
     {
-        if (_game.SecondLine[2] == ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.SecondLine[2] != ' ')
         {
             return RedirectToAction("Index");
         }
         
         //set player selection
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.SecondLine[2] = 'O';
+            game.SecondLine[2] = 'O';
         }
         else
         {
-            _game.SecondLine[2] = 'X';
+            game.SecondLine[2] = 'X';
         }
 
         //check for a winner
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //increase round counter
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);        
         
         return RedirectToAction("Index");
     }
@@ -220,28 +236,32 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult ThirdFirst()
     {
-        if (_game.ThirdLine[0] == ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.ThirdLine[0] != ' ')
         {
             return RedirectToAction("Index");
         }        
         
         //setting
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.ThirdLine[0] = 'O';
+            game.ThirdLine[0] = 'O';
         }
         else
         {
-            _game.ThirdLine[0] = 'X';
+            game.ThirdLine[0] = 'X';
         }
         
         //a winner?
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //round counter
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);
         
         return RedirectToAction("Index");
     }
@@ -249,28 +269,32 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult ThirdSecond()
     {
-        if (_game.ThirdLine[1] == ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.ThirdLine[1] != ' ')
         {
             return RedirectToAction("Index");
         }        
         
         //setting
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.ThirdLine[1] = 'O';
+            game.ThirdLine[1] = 'O';
         }
         else
         {
-            _game.ThirdLine[1] = 'X';
+            game.ThirdLine[1] = 'X';
         }
         
         //a winner?
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //round counter
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);
         
         return RedirectToAction("Index");
     }
@@ -278,28 +302,32 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult ThirdThird()
     {
-        if (_game.ThirdLine[2] == ' ')
+        GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.ThirdLine[2] != ' ')
         {
             return RedirectToAction("Index");
         }        
         
         //setting
-        if (_game.Round % 2 == 0)
+        if (game.Round % 2 == 0)
         {
-            _game.ThirdLine[2] = 'O';
+            game.ThirdLine[2] = 'O';
         }
         else
         {
-            _game.ThirdLine[2] = 'X';
+            game.ThirdLine[2] = 'X';
         }
         
         //a winner?
-        _checker.IsThereAWinner(_game);
+        game = _checker.IsThereAWinner(game);
         
         //round counter
-        _game.Round += 1;
+        game.Round += 1;
         
         _logger.LogInformation("new symbol set");
+        
+        lib.TextFileNode.SaveGame(game);
         
         return RedirectToAction("Index");
     }

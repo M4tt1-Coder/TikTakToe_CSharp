@@ -21,13 +21,13 @@ public class Checker
         foreach (var symbolId in symbolIDs)
         {
             //first line check
-            HorizontalLine(game.FirstLine, symbolId);
+            HorizontalLine(game.FirstLine, symbolId, game.Over);
             
             //second line
-            HorizontalLine(game.SecondLine, symbolId);
+            HorizontalLine(game.SecondLine, symbolId, game.Over);
             
             //third line
-            HorizontalLine(game.ThirdLine, symbolId);
+            HorizontalLine(game.ThirdLine, symbolId, game.Over);
             
             //diagonal 
             DiagonalLine(game.FirstLine[0],
@@ -35,21 +35,24 @@ public class Checker
                 game.SecondLine[1],
                 game.ThirdLine[0],
                 game.ThirdLine[2],
-                symbolId);
+                symbolId,
+                game.Over
+                );
             
             //vertical
             VerticalLine(
                 game.FirstLine,
                 game.SecondLine,
                 game.ThirdLine,
-                symbolId
+                symbolId,
+                game.Over
                 );
         }
         
         return game;
     }
 
-    private void VerticalLine(char[] first, char[] second, char[] third, char symbolId)
+    private void VerticalLine(char[] first, char[] second, char[] third, char symbolId, bool over)
     {
         //the case:
         //X _ _
@@ -69,6 +72,8 @@ public class Checker
                 second[0] = '⭕';
                 third[0] = '⭕';
             }
+
+            over = true;
         }
         
         //the case:
@@ -89,6 +94,8 @@ public class Checker
                 second[0] = '⭕';
                 third[0] = '⭕';
             }
+
+            over = true;
         }
         
         //the case:
@@ -109,6 +116,8 @@ public class Checker
                 second[0] = '⭕';
                 third[0] = '⭕';
             }
+
+            over = true;
         }
     }
     
@@ -121,7 +130,7 @@ public class Checker
     /// <param name="pos4"></param>
     /// <param name="pos5"></param>
     /// <param name="symbolId"></param>
-    private void DiagonalLine(char pos1, char pos2, char pos3, char pos4, char pos5, char symbolId)
+    private void DiagonalLine(char pos1, char pos2, char pos3, char pos4, char pos5, char symbolId, bool over)
     {
         //checking for this ...
         //X 
@@ -141,7 +150,9 @@ public class Checker
                 pos1 = '⭕';
                 pos3 = '⭕';
                 pos5 = '⭕';
-            }            
+            }
+
+            over = true;
         }
         
         //checking for this ...
@@ -162,7 +173,9 @@ public class Checker
                 pos2 = '⭕';
                 pos3 = '⭕';
                 pos4 = '⭕';
-            }            
+            }
+
+            over = true;
         }
     }
     
@@ -172,7 +185,7 @@ public class Checker
     /// <param name="line">1. || 2. || 3. line</param>
     /// <param name="symbolId">if it checks for X || O</param>
     /// <returns></returns>
-    private char[] HorizontalLine(char[] line, char symbolId)
+    private char[] HorizontalLine(char[] line, char symbolId, bool over)
     {
         if (line[0] == symbolId && line[1] == symbolId && line[2] == symbolId)
         {
@@ -187,6 +200,8 @@ public class Checker
                     line[i] = '⭕';
                 }
             }
+
+            over = true;
         }
 
         return line;
