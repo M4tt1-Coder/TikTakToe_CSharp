@@ -6,11 +6,20 @@ namespace TikTakToe_Game.lib;
 
 public static class TextFileNode
 {
+    /// <summary>
+    /// Represents the directory path to the storage file
+    /// </summary>
+    /// <returns>path to txt-file</returns>
     private static string Path()
     {
         return "./lib/GameStorage.txt";
     }
 
+    /// <summary>
+    /// - checks if the file exists, if not then it creates a new one in the path 
+    /// - loads all lines stored in the text file -> fails after three attemps to access the file
+    /// </summary>
+    /// <returns>list of all lines in a file</returns>
     private static List<string> LoadContent()
     {
         if(!File.Exists(Path()))
@@ -41,6 +50,11 @@ public static class TextFileNode
         return new List<string>();
     }
     
+    /// <summary>
+    /// gets all lines in text file
+    /// creates new game instance
+    /// </summary>
+    /// <returns>returns the game</returns>
     public static GameViewModel GetGame()
     {
         List<string> lines = LoadContent();
@@ -65,6 +79,9 @@ public static class TextFileNode
         return games[0];
     }
 
+    /// <summary>
+    /// deletes all contents of the storage text file
+    /// </summary>
     public static void ResetGame()
     {
         File.WriteAllText(Path(), String.Empty);

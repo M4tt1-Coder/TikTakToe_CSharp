@@ -11,15 +11,19 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
+    /// <summary>
+    /// A instance of a local validator
+    /// </summary>
     private readonly Checker _checker = new Checker();
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
     }
-
-    //TODO - changed the symbols when player won on a diagonal AND change over prop in checker
-    //TODO - add alert for player who won
     
+    /// <summary>
+    /// Main action result and only view returned -> leads to the homepage for the game
+    /// </summary>
+    /// <returns>View object of the homepage</returns>
     public IActionResult Index()
     {
         GameViewModel game = lib.TextFileNode.GetGame();
@@ -27,6 +31,7 @@ public class HomeController : Controller
         if (game.Over)
         {
             lib.TextFileNode.ResetGame();
+            return View(game);
         }
         
         _logger.LogDebug("game model created");

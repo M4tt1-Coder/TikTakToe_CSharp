@@ -2,6 +2,9 @@ using TikTakToe_Game.Models;
 
 namespace TikTakToe_Game.lib;
 
+/// <summary>
+/// Represents a validator instance
+/// </summary>
 public class Checker
 {
     /// <summary>
@@ -43,10 +46,22 @@ public class Checker
                 game
                 );
         }
+        
+        //check for full field
+        AllFieldsFull(game);
+        
         lib.TextFileNode.SaveGame(game);
         return game;
     }
 
+    /// <summary>
+    /// Checks if there are winning pairs on vertical lines
+    /// </summary>
+    /// <param name="first">stands for the first line if the game</param>
+    /// <param name="second">second line</param>
+    /// <param name="third">third line</param>
+    /// <param name="symbolId">the symbol were currently checking on</param>
+    /// <param name="game">the game itself</param>
     private void VerticalLine(char[] first, char[] second, char[] third, char symbolId, GameViewModel game)
     {
         //the case:
@@ -55,6 +70,7 @@ public class Checker
         //X _ _
         if (first[0] == symbolId && second[0] == symbolId && third[0] == symbolId)
         {
+            //replaces the winning line with extra symbols
             if (symbolId == 'X')
             {
                 first[0] = '❌';
@@ -126,7 +142,6 @@ public class Checker
     /// <param name="game.ThirdLine[2]"></param>
     /// <param name="game"></param>
     /// <param name="symbolId"></param>
-    /// <param name="over"></param>
     private void DiagonalLine(GameViewModel game, char symbolId)
     {
         //checking for this ...
@@ -175,12 +190,13 @@ public class Checker
             game.Over = true;
         }
     }
-    
+
     /// <summary>
     /// checks if a player won a horizontal line
     /// </summary>
     /// <param name="line">1. || 2. || 3. line</param>
     /// <param name="symbolId">if it checks for X || O</param>
+    /// <param name="game"></param>
     /// <returns></returns>
     private char[] HorizontalLine(char[] line, char symbolId, GameViewModel game)
     {
@@ -202,5 +218,44 @@ public class Checker
         }
 
         return line;
+    }
+
+    /// <summary>
+    /// stops the game when all fields where used and the players ended in a draw
+    /// </summary>
+    /// <param name="game">game instance</param>
+    private void AllFieldsFull(GameViewModel game)
+    {
+        //counter for taken fields
+        int counter = 0;
+        
+        foreach (var f in game.FirstLine)
+        {
+            if (f != ' ')
+            {
+                counter += 1;
+            }
+        }
+
+        foreach (var f in game.SecondLine)
+        {
+            if (f != ' ')
+            {
+                counter += 1;
+            }
+        }
+
+        foreach (var f in game.ThirdLine)
+        {
+            if (f != ' ')
+            {
+                counter += 1;
+            }
+        }
+
+        if (counter == 9)
+        {
+            game.Over = true;
+        }
     }
 }

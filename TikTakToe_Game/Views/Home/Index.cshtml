@@ -48,5 +48,20 @@
         <div class="col-4 d-flex justify-content-start"><p class="">This is round: @Model.Round</p></div>
         <div class="col-4"></div>
     </div>
+    @if (Model.Over)
+    {
+        @if (Model.Round % 2 == 1)
+        {
+            <div class="alert alert-danger" role="alert">
+                Player 2 won!
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                Player 1 won!
+            </div>
+        }
+    }
 </main>
 
