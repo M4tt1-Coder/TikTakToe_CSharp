@@ -21,22 +21,17 @@ public class Checker
         foreach (var symbolId in symbolIDs)
         {
             //first line check
-            HorizontalLine(game.FirstLine, symbolId, game.Over);
+            HorizontalLine(game.FirstLine, symbolId, game);
             
             //second line
-            HorizontalLine(game.SecondLine, symbolId, game.Over);
+            HorizontalLine(game.SecondLine, symbolId, game);
             
             //third line
-            HorizontalLine(game.ThirdLine, symbolId, game.Over);
+            HorizontalLine(game.ThirdLine, symbolId, game);
             
             //diagonal 
-            DiagonalLine(game.FirstLine[0],
-                game.FirstLine[2],
-                game.SecondLine[1],
-                game.ThirdLine[0],
-                game.ThirdLine[2],
-                symbolId,
-                game.Over
+            DiagonalLine(game,
+                symbolId
                 );
             
             //vertical
@@ -45,14 +40,14 @@ public class Checker
                 game.SecondLine,
                 game.ThirdLine,
                 symbolId,
-                game.Over
+                game
                 );
         }
-        
+        lib.TextFileNode.SaveGame(game);
         return game;
     }
 
-    private void VerticalLine(char[] first, char[] second, char[] third, char symbolId, bool over)
+    private void VerticalLine(char[] first, char[] second, char[] third, char symbolId, GameViewModel game)
     {
         //the case:
         //X _ _
@@ -73,7 +68,7 @@ public class Checker
                 third[0] = '⭕';
             }
 
-            over = true;
+            game.Over = true;
         }
         
         //the case:
@@ -84,18 +79,18 @@ public class Checker
         {
             if (symbolId == 'X')
             {
-                first[0] = '❌';
-                second[0] = '❌';
-                third[0] = '❌';
+                first[1] = '❌';
+                second[1] = '❌';
+                third[1] = '❌';
             }
             else
             {
-                first[0] = '⭕';
-                second[0] = '⭕';
-                third[0] = '⭕';
+                first[1] = '⭕';
+                second[1] = '⭕';
+                third[1] = '⭕';
             }
-
-            over = true;
+    
+            game.Over = true;
         }
         
         //the case:
@@ -106,53 +101,55 @@ public class Checker
         {
             if (symbolId == 'X')
             {
-                first[0] = '❌';
-                second[0] = '❌';
-                third[0] = '❌';
+                first[2] = '❌';
+                second[2] = '❌';
+                third[2] = '❌';
             }
             else
             {
-                first[0] = '⭕';
-                second[0] = '⭕';
-                third[0] = '⭕';
+                first[2] = '⭕';
+                second[2] = '⭕';
+                third[2] = '⭕';
             }
 
-            over = true;
+            game.Over = true;
         }
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="pos1"></param>
-    /// <param name="pos2"></param>
-    /// <param name="pos3"></param>
-    /// <param name="pos4"></param>
-    /// <param name="pos5"></param>
+    /// <param name="game.FirstLine[0]"></param>
+    /// <param name="game.FirstLine[2]"></param>
+    /// <param name="game.SecondLine[1]"></param>
+    /// <param name="game.ThirdLine[0]"></param>
+    /// <param name="game.ThirdLine[2]"></param>
+    /// <param name="game"></param>
     /// <param name="symbolId"></param>
-    private void DiagonalLine(char pos1, char pos2, char pos3, char pos4, char pos5, char symbolId, bool over)
+    /// <param name="over"></param>
+    private void DiagonalLine(GameViewModel game, char symbolId)
     {
         //checking for this ...
         //X 
         // X
         //  X
         //...layout
-        if (pos1 == symbolId && pos3 == symbolId && pos5 == symbolId)
+        if (game.FirstLine[0] == symbolId && game.SecondLine[1] == symbolId && game.ThirdLine[2] == symbolId)
         {
             if (symbolId == 'X')
             {
-                pos1 = '❌';
-                pos3 = '❌';
-                pos5 = '❌';
+                game.FirstLine[0] = '❌';
+                game.SecondLine[1] = '❌';
+                game.ThirdLine[2] = '❌';
             }
             else
             {
-                pos1 = '⭕';
-                pos3 = '⭕';
-                pos5 = '⭕';
+                game.FirstLine[0] = '⭕';
+                game.SecondLine[1] = '⭕';
+                game.ThirdLine[2] = '⭕';
             }
 
-            over = true;
+            game.Over = true;
         }
         
         //checking for this ...
@@ -160,22 +157,22 @@ public class Checker
         // X
         //X
         //...layout
-        if (pos2 == symbolId && pos3 == symbolId && pos4 == symbolId)
+        if (game.FirstLine[2] == symbolId && game.SecondLine[1] == symbolId && game.ThirdLine[0] == symbolId)
         {
             if (symbolId == 'X')
             {
-                pos2 = '❌';
-                pos3 = '❌';
-                pos4 = '❌';
+                game.FirstLine[2] = '❌';
+                game.SecondLine[1] = '❌';
+                game.ThirdLine[0] = '❌';
             }
             else
             {
-                pos2 = '⭕';
-                pos3 = '⭕';
-                pos4 = '⭕';
+                game.FirstLine[2] = '⭕';
+                game.SecondLine[1] = '⭕';
+                game.ThirdLine[0] = '⭕';
             }
 
-            over = true;
+            game.Over = true;
         }
     }
     
@@ -185,7 +182,7 @@ public class Checker
     /// <param name="line">1. || 2. || 3. line</param>
     /// <param name="symbolId">if it checks for X || O</param>
     /// <returns></returns>
-    private char[] HorizontalLine(char[] line, char symbolId, bool over)
+    private char[] HorizontalLine(char[] line, char symbolId, GameViewModel game)
     {
         if (line[0] == symbolId && line[1] == symbolId && line[2] == symbolId)
         {
@@ -201,7 +198,7 @@ public class Checker
                 }
             }
 
-            over = true;
+            game.Over = true;
         }
 
         return line;
