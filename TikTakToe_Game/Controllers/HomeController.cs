@@ -27,12 +27,6 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         GameViewModel game = lib.TextFileNode.GetGame();
-
-        if (game.Over)
-        {
-            lib.TextFileNode.ResetGame();
-            return View(game);
-        }
         
         _logger.LogDebug("game model created");
         
@@ -44,6 +38,11 @@ public class HomeController : Controller
     public IActionResult FirstFirst()
     {
         GameViewModel game = lib.TextFileNode.GetGame();
+
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
         
         if (game.FirstLine[0] != ' ')
         {
@@ -59,7 +58,6 @@ public class HomeController : Controller
         {
             game.FirstLine[0] = 'X';
         }
-
         //check for a winner
         game = _checker.IsThereAWinner(game);
         
@@ -77,6 +75,11 @@ public class HomeController : Controller
     public IActionResult FirstSecond()
     {
         GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
         
         if (game.FirstLine[1] != ' ')
         {
@@ -111,6 +114,11 @@ public class HomeController : Controller
     {
         GameViewModel game = lib.TextFileNode.GetGame();
         
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
+        
         if (game.FirstLine[2] != ' ')
         {
             return RedirectToAction("Index");
@@ -143,6 +151,11 @@ public class HomeController : Controller
     public IActionResult SecondFirst()
     {
         GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
         
         if (game.SecondLine[0] != ' ')
         {
@@ -177,6 +190,11 @@ public class HomeController : Controller
     {
         GameViewModel game = lib.TextFileNode.GetGame();
         
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
+        
         if (game.SecondLine[1] != ' ')
         {
             return RedirectToAction("Index");
@@ -209,6 +227,11 @@ public class HomeController : Controller
     public IActionResult SecondThird()
     {
         GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
         
         if (game.SecondLine[2] != ' ')
         {
@@ -243,6 +266,11 @@ public class HomeController : Controller
     {
         GameViewModel game = lib.TextFileNode.GetGame();
         
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
+        
         if (game.ThirdLine[0] != ' ')
         {
             return RedirectToAction("Index");
@@ -275,6 +303,11 @@ public class HomeController : Controller
     public IActionResult ThirdSecond()
     {
         GameViewModel game = lib.TextFileNode.GetGame();
+        
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
         
         if (game.ThirdLine[1] != ' ')
         {
@@ -309,6 +342,11 @@ public class HomeController : Controller
     {
         GameViewModel game = lib.TextFileNode.GetGame();
         
+        if (game.Over)
+        {
+            return RedirectToAction("Index");
+        }
+        
         if (game.ThirdLine[2] != ' ')
         {
             return RedirectToAction("Index");
@@ -334,6 +372,14 @@ public class HomeController : Controller
         
         lib.TextFileNode.SaveGame(game);
         
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public IActionResult ResetGame()
+    {
+        lib.TextFileNode.ResetGame();
+
         return RedirectToAction("Index");
     }
     

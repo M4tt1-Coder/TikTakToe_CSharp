@@ -32,7 +32,7 @@ public static class TextFileNode
         //-> if empty save default case
         if (File.ReadAllText(Path()).Length == 0)
         {
-            File.WriteAllLines(Path(), new List<string>() {" , , | , , | , , |1|false"});
+            File.WriteAllLines(Path(), new List<string>() {" , , | , , | , , |1|false|false"});
         }
         
         for (var i = 0; i < tries; i++)
@@ -72,6 +72,7 @@ public static class TextFileNode
             game.ThirdLine = GetLine(columns[2]);
             game.Round = Convert.ToInt32(columns[3]);
             game.Over = Convert.ToBoolean(columns[4]);
+            game.Full = Convert.ToBoolean(columns[5]);
             
             games.Add(game);
         }
@@ -93,7 +94,8 @@ public static class TextFileNode
                       $"{ConvertLine(game.SecondLine)}|" +
                       $"{ConvertLine(game.ThirdLine)}|" +
                       $"{game.Round.ToString()}|" +
-                      $"{game.Over.ToString()}";
+                      $"{game.Over.ToString()}|" +
+                      $"{game.Full.ToString()}";
 
         List<string> content = new List<string>() { line };
         

@@ -50,18 +50,49 @@
     </div>
     @if (Model.Over)
     {
-        @if (Model.Round % 2 == 1)
+        @if (!Model.Full)
         {
-            <div class="alert alert-danger" role="alert">
-                Player 2 won!
-            </div>
+            @if (Model.Round % 2 == 1)
+            {
+                <div class="alert alert-danger" role="alert">
+                    Player 2 won!
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">
+                    The first player won!
+                </div>
+            }    
         }
-        else
-        {
-            <div class="alert alert-danger" role="alert">
-                Player 1 won!
+        <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#play_again" aria-controls="play_again">New Game</button>
+        <div class="offcanvas offcanvas-bottom" data-bs-scroll="false" data-bs-backdrop="true" tabindex="-1" id="play_again" aria-labelledby="canvasLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title text-success" id="canvasLabel">
+                    Start a new game!
+                </h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> 
             </div>
-        }
+            <div class="offcanvas-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <h4>
+                                Do you want to start a new game?
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex">
+                            <form method="post">
+                                <button type="submit" class="btn btn-success me-3" asp-action="ResetGame" asp-controller="Home">Yes</button>
+                            </form>
+                            <button class="btn btn-danger" type="button" aria-label="Close" data-bs-dismiss="offcanvas">No</button>
+                        </div>
+                    </div>  
+                </div>
+            </div> 
+        </div>
     }
 </main>
 

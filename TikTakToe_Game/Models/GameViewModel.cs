@@ -35,6 +35,11 @@ public class GameViewModel
     /// state of the game
     /// </summary>
     public bool Over { get; set; }
+
+    /// <summary>
+    /// is true when all fields are taken
+    /// </summary>
+    public bool Full { get; set; }
     
     public static GameViewModel NewGame()
     {

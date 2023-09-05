@@ -1,1 +1,1 @@
- , ,X| , ,O| ,X, |4|False
+ , ,❌| ,❌,O|❌,O, |6|True|False

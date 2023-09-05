@@ -50,6 +50,7 @@ public class Checker
         //check for full field
         AllFieldsFull(game);
         
+        //save the game
         lib.TextFileNode.SaveGame(game);
         return game;
     }
@@ -255,6 +256,7 @@ public class Checker
 
         if (counter == 9)
         {
+            game.Full = true;
             game.Over = true;
         }
     }
