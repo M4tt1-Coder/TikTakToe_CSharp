@@ -49,6 +49,11 @@ The _idea_ to create games like this digital I got from @Hoss Green!
 
 As I said, I went trough an understanding process and what helped the most was [this](https://www.youtube.com/watch?v=YYjCgsIQr3I) video from Sameer Saini, great video!😁
 
+### Socials
+
++ [LinkedIn](https://www.linkedin.com/in/matthis-gei%C3%9Fler-4198b9258?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
++ [Fiverr](https://www.fiverr.com/s/L632yQ)
+
 ## License
 
 _MIT License_
