@@ -33,4 +33,4 @@ dotnet run
   ```
 
 After you started the solution you should see something like this in your browser:
-![example of the game field and main page](/TikTakToe_Game/pictures/Screenshot 2023-10-07 at 17.52.02.png)
+![example of the game field and main page](/TikTakToe_Game/pictures/gameFieldExample.png)
