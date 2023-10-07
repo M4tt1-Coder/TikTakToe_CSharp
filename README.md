@@ -29,8 +29,9 @@ dotnet run
 + When you want to start from everywhere:
   + open a terminal and enter this command:
   ```
-  dotnet run --project /C/example/TikTakToe_Game.sln
+  dotnet run --project /your/path/to/TikTakToe_Game.sln
   ```
+  + you have to put your own path to the project in the command
 
 After you started the solution you should see something like this in your browser:
 ![example of the game field and main page](/TikTakToe_Game/pictures/gameFieldExample.png)
