@@ -26,5 +26,11 @@ In a IDE like ***Visual Studio*** or ***JetBrains Rider*** you should can start 
 dotnet run 
 ```
   + that will run the application locally.
++ When you want to start from everywhere:
+  + open a terminal and enter this command:
+  ```
+  dotnet run --project /C/example/TikTakToe_Game.sln
+  ```
 
-    
+After you started the solution you should see something like this in your browser:
+![example of the game field and main page](/TikTakToe_Game/pictures/Screenshot 2023-10-07 at 17.52.02.png)
