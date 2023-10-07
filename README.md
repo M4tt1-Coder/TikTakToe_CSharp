@@ -19,7 +19,7 @@ The application opens on port 5010 in http and https a page with a playing field
 
 ## Installation
 
-In a IDE like ***Visual Studio*** or ***JetBrains Rider*** you should can start it manual with the start button.
+In an IDE like ***Visual Studio*** or ***JetBrains Rider*** you should can start it manual with the start button.
 
 + To start it from the command line / terminal open a terminal inside the project directory and enter the following command:
 ```
@@ -35,3 +35,40 @@ dotnet run
 
 After you started the solution you should see something like this in your browser:
 ![example of the game field and main page](/TikTakToe_Game/pictures/gameFieldExample.png)
+
+## How to use the project?
+
++ If you don't know how to play TikTakToe then you can look the rules up [here](https://www.thesprucecrafts.com/tic-tac-toe-game-rules-412170)!
++ For more information follow the instruction in the application!
+
+## Credits
+
+The _idea_ to create games like this digital I got from @hoss-green!
+
+### Materials
+
+As I said, I went trough an understanding process and what helped the most was [this](https://www.youtube.com/watch?v=YYjCgsIQr3I) video from Sameer Saini, great video!😁
+
+## License
+
+_MIT License_
+
+_Copyright (c) 2023 **Matti**_
+_
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:_
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
