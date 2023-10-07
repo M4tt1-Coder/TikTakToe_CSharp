@@ -17,3 +17,14 @@ The application opens on port 5010 in http and https a page with a playing field
   + ... the embedding of dependencies to elements of the [razorpage](https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-7.0&tabs=visual-studio) and a model property to interact with the player
   + At first find a way to hold ot store a object trough out the runtime although a controller and actions can't store a object
 
+## Installation
+
+In a IDE like ***Visual Studio*** or ***JetBrains Rider*** you should can start it manual with the start button.
+
++ To start it from the command line / terminal open a terminal inside the project directory and enter the following command:
+```
+dotnet run 
+```
+  + that will run the application locally.
+
+    
